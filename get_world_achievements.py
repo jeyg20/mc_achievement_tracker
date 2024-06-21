@@ -10,7 +10,7 @@ def get_completed_achievements() -> list:
     complete_achievements = []
 
     for key, value in data.items():
-        if isinstance(value, dict) and value.get("done") == True:
+        if isinstance(value, dict):
             complete_achievements.append(key)
 
     return complete_achievements
