@@ -33,13 +33,12 @@ def extract_achievements():
     for element in elements:
         code_tags = element.find_all("code")
         b_tags = element.find_all("b")
-        for name in b_tags:
+
+        filter_code_tags = [item for item in code_tags if "#" not in item.get_text()]
+
+        for name, code in zip(b_tags, filter_code_tags):
             names.append(name.get_text())
-            for code_tag in code_tags:
-                if any(keyword in code_tag.get_text() for keyword in keywords):
-                    achievements.append("minecraft:" + code_tag.get_text())
+            if code.get_text():
+                achievements.append("minecraft:" + code.get_text())
 
     return names, achievements
-
-
-extract_achievements()
