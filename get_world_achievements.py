@@ -6,14 +6,11 @@ with open(
     data = json.load(file)
 
 
-def get_world_achievements():
-    complete_achievements: int = 0
-    incomplete_achievements: int = 0
+def get_completed_achievements():
+    complete_achievements = []
 
     for key, value in data.items():
         if isinstance(value, dict) and value.get("done") == True:
-            complete_achievements += 1
-        elif isinstance(value, dict) and value.get("done") == False:
-            incomplete_achievements += 1
+            complete_achievements.append(key)
 
     return complete_achievements
