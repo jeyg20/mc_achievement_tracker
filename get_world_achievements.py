@@ -6,7 +6,7 @@ with open(
     data = json.load(file)
 
 
-def get_completed_achievements():
+def get_completed_achievements() -> list:
     complete_achievements = []
 
     for key, value in data.items():

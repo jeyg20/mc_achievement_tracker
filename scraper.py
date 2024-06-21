@@ -22,7 +22,8 @@ def fetch_page_content():
     return response
 
 
-def extract_achievements() -> list:
+def extract_achievements():
+    names = []
     achievements = []
     keywords = ["story", "nether", "end", "adventure", "husbandry"]
     response = fetch_page_content()
@@ -31,8 +32,14 @@ def extract_achievements() -> list:
 
     for element in elements:
         code_tags = element.find_all("code")
-        for code_tag in code_tags:
-            if any(keyword in code_tag.get_text() for keyword in keywords):
-                achievements.append(code_tag.get_text())
+        b_tags = element.find_all("b")
+        for name in b_tags:
+            names.append(name.get_text())
+            for code_tag in code_tags:
+                if any(keyword in code_tag.get_text() for keyword in keywords):
+                    achievements.append("minecraft:" + code_tag.get_text())
 
-    return achievements
+    return names, achievements
+
+
+extract_achievements()
