@@ -12,7 +12,8 @@ if __name__ == "__main__":
     achievement_name, achievements_code = scraper.extract_achievements()
     world_achievements: list = get_world_achievements.get_completed_achievements(selected_file)
 
+    print(f"{'NAME' :<35} {'CODE':^35} {'COMPLETED':>32}")
     for name, achievement in zip(achievement_name, achievements_code):
         print(
-            f"Name: {name} Code: {achievement} Completed: {achievement in world_achievements}"
+            f"{name :<35} {achievement :<60} {achievement in world_achievements}"
         )
