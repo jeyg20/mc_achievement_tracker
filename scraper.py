@@ -1,4 +1,3 @@
-import time
 import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import HTTPError
