@@ -11,10 +11,10 @@ def follow(files):
         yield line
 
 
-if __name__ == "__main__":
-    log_file = open("/home/jeison/.minecraft/logs/latest.log", "r")
-    log_lines = follow(log_file)
-    pattern = r"^\[\d{2}:\d{2}:\d{2}\] \[Server thread/INFO\]: .* \[.*\]$"
-    for line in log_lines:
-        if re.match(pattern, line):
-            print(line)
+def process_log(file_path):
+    with open(file_path, "r") as log_file:
+        log_lines = follow(log_file)
+        pattern = r"^\[\d{2}:\d{2}:\d{2}\] \[Server thread/INFO\]:\s+.* has made the advancement \[.*\]$"
+        for line in log_lines:
+            if re.match(pattern, line):
+                print(line.strip())
